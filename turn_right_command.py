@@ -1,8 +1,7 @@
 from command import Command
-from rover import Rover
 
 class TurnRightCommand(Command):
-    def __init__(self, rover : Rover):
+    def __init__(self, rover):
         self.rover = rover
 
     def execute(self):

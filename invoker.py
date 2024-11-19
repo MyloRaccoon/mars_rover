@@ -1,8 +1,4 @@
-from rover import Rover
-from forward_command import ForwardCommand
-from backward_command import BackwardCommand
-from turn_left_command import TurnLeftCommand
-from turn_right_command import TurnRightCommand
+from command import Command
 
 class Invoker:
 
