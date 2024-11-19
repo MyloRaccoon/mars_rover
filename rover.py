@@ -28,3 +28,25 @@ class Rover(Object):
                 self.direction = Direction.WEST
             case Direction.EAST:
                 self.direction = Direction.SOUTH
+
+    def forward(self):
+        match (self.direction):
+            case Direction.NORTH:
+                self.x += 1
+            case Direction.WEST:
+                self.y += -1
+            case Direction.SOUTH:
+                self.x += -1
+            case Direction.EAST:
+                self.y += 1
+
+    def backward(self):
+        match (self.direction):
+            case Direction.NORTH:
+                self.x += -1
+            case Direction.WEST:
+                self.y += 1
+            case Direction.SOUTH:
+                self.x += 1
+            case Direction.EAST:
+                self.y += -1
