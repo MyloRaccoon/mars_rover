@@ -7,4 +7,4 @@ class forwardCommand(Command):
 		self.rover = rover
 
 	def execute(self):
-		rover.forward()
+		self.rover.forward()
