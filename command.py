@@ -1,3 +1,3 @@
 class Command:
 
-	def execute(): pass
+	def execute(self): pass
