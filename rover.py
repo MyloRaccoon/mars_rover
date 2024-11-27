@@ -9,11 +9,12 @@ from quit_command import QuitCommand
 from planet import Planet
 
 class Rover(Object):
-    def __init__(self, x: int, y: int):
+    def __init__(self, x: int, y: int, planet: Planet):
         super().__init__(x, y)
         self.direction: Direction = Direction.NORTH
         self.remote: Invoker = Invoker()
         self.set_commands()
+        self.planet: Planet = planet
 
     def set_commands(self):
         self.remote.add_command('f', ForwardCommand(self))
@@ -54,15 +55,33 @@ class Rover(Object):
                 self.direction = Direction.SOUTH
 
     def forward(self):
+        new_x: int = self.x
+        new_y: int = self.y
+
         match (self.direction):
             case Direction.NORTH:
-                self.x += 1
+                new_y += 1
             case Direction.WEST:
-                self.y += -1
+                new_x += -1
             case Direction.SOUTH:
-                self.x += -1
+                new_y += -1
             case Direction.EAST:
-                self.y += 1
+                new_x += 1
+
+        self.x, self.y = new_x, new_y
+
+        self.wrap()
+
+    def wrap(self):
+        if self.x < 0:
+            self.x = self.planet.width
+        elif self.x > self.planet.width:
+            self.x = 0
+
+        if self.y < 0 :
+            self.y = self.planet.height
+        elif self.y > self.planet.height:
+            self.y = 0
 
     def backward(self):
         match (self.direction):
