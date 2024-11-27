@@ -1,0 +1,1 @@
+class ObstacleEncounterException(Exception): pass

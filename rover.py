@@ -2,6 +2,7 @@ from object import Object
 from direction import Direction
 from position import Position
 from planet import Planet
+from obstacle_encounter_exception import ObstacleEncounterException
 
 class Rover(Object):
     def __init__(self, position: Position, planet: Planet):
@@ -46,9 +47,11 @@ class Rover(Object):
             case Direction.EAST:
                 new_position.x += 1
 
-        self.position = new_position.copy()
-
-        self.wrap()
+        if self.planet.get_object_at(new_position) is None:
+            self.position = new_position.copy()
+            self.wrap()
+        else:
+            raise ObstacleEncounterException(f"/!\\ Can't move to {new_position} because there is already an object here.")
 
     def wrap(self):
         if self.position.x < 0:
