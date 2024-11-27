@@ -8,7 +8,7 @@ class Invoker:
 	def add_command(self, entry: str, command: Command):
 		self.commands[entry] = command
 
-	def execute(self, entry):
+	def execute(self, entry: str):
 		if entry in self.commands.keys():
 			self.commands[entry].execute()
 		else:

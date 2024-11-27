@@ -5,12 +5,14 @@ from forward_command import ForwardCommand
 from backward_command import BackwardCommand
 from turn_left_command import TurnLeftCommand
 from turn_right_command import TurnRightCommand
+from quit_command import QuitCommand
+from planet import Planet
 
 class Rover(Object):
-    def __init__(self, x, y):
+    def __init__(self, x: int, y: int):
         super().__init__(x, y)
-        self.direction = Direction.NORTH
-        self.remote = Invoker()
+        self.direction: Direction = Direction.NORTH
+        self.remote: Invoker = Invoker()
         self.set_commands()
 
     def set_commands(self):
@@ -18,10 +20,15 @@ class Rover(Object):
         self.remote.add_command('b', BackwardCommand(self))
         self.remote.add_command('r', TurnRightCommand(self))
         self.remote.add_command('l', TurnLeftCommand(self))
+        self.remote.add_command('e', QuitCommand())
 
     def execute(self, entry: str):
         for c in entry:
-            self.remote.execute(c)
+            try:
+                self.remote.execute(c)
+            except Exception as e:
+                print(f"/!\\ command {c} ignored ({e})")
+
 
     def turn_left(self):
         match(self.direction):
