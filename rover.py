@@ -1,35 +1,13 @@
 from object import Object
 from direction import Direction
 from position import Position
-from invoker import Invoker
-from forward_command import ForwardCommand
-from backward_command import BackwardCommand
-from turn_left_command import TurnLeftCommand
-from turn_right_command import TurnRightCommand
-from quit_command import QuitCommand
 from planet import Planet
 
 class Rover(Object):
     def __init__(self, position: Position, planet: Planet):
         super().__init__(position)
         self.direction: Direction = Direction.NORTH
-        self.remote: Invoker = Invoker()
-        self.set_commands()
         self.planet: Planet = planet
-
-    def set_commands(self):
-        self.remote.add_command('f', ForwardCommand(self))
-        self.remote.add_command('b', BackwardCommand(self))
-        self.remote.add_command('r', TurnRightCommand(self))
-        self.remote.add_command('l', TurnLeftCommand(self))
-        self.remote.add_command('e', QuitCommand())
-
-    def execute(self, entry: str):
-        for c in entry:
-            try:
-                self.remote.execute(c)
-            except Exception as e:
-                print(f"/!\\ command {c} ignored ({e})")
 
 
     def turn_left(self):

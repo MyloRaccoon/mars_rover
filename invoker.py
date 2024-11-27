@@ -9,7 +9,8 @@ class Invoker:
 		self.commands[entry] = command
 
 	def execute(self, entry: str):
-		if entry in self.commands.keys():
-			self.commands[entry].execute()
-		else:
-			raise Exception(f'Command "{entry}" does not exist.')
+		for command in entry:
+			if command in self.commands.keys():
+				self.commands[command].execute()
+			else:
+				raise Exception(f'Command "{command}" does not exist.')
