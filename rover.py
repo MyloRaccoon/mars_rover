@@ -47,7 +47,7 @@ class Rover(Object):
             case Direction.EAST:
                 new_position.x += 1
 
-        if self.planet.get_object_at(new_position) is None:
+        if self.planet.get_obstacle_at(new_position) is None:
             self.position = new_position.copy()
             self.wrap()
         else:
