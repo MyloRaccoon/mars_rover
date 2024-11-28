@@ -10,7 +10,6 @@ class Rover(Object):
         self.direction: Direction = Direction.NORTH
         self.planet: Planet = planet
 
-
     def turn_left(self):
         match(self.direction):
             case Direction.NORTH:

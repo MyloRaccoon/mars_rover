@@ -2,7 +2,7 @@ from rover import Rover
 from planet import Planet
 from position import Position
 from obstacle import Obstacle
-from remote import Remote
+from api.remote import Remote
 
 if __name__ == '__main__':
 
