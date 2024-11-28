@@ -17,6 +17,7 @@ class Remote(Invoker):
 		self.add_command('l', TurnLeftCommand(rover))
 		self.add_command('e', QuitCommand())
 
+
 	def handle_execute_exception(self, exception: Exception):
 		if isinstance(exception, ObstacleEncounterException):
 			print(exception)

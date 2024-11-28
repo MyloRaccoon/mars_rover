@@ -22,6 +22,7 @@ class Planet:
 		else:
 			self.obstacles[obstacle.position.__str__()] = obstacle
 
-	def get_obstacle_at(self, position: Position) -> Obstacle:
+	def get_obstacle_at(self, position: Position) -> Obstacle | None:
 		if position.__str__() in self.obstacles.keys():
 			return self.obstacles[position.__str__()]
+		return None
