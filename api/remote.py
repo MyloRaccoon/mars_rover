@@ -22,4 +22,4 @@ class Remote(Invoker):
 		if isinstance(exception, ObstacleEncounterException):
 			print(exception)
 		else:
-			super().handle_execute_exception(exception)
+			raise exception

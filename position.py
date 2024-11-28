@@ -10,7 +10,7 @@ class Position:
 	def __str__(self) -> str:
 		return f"({self.x}, {self.y})"
 	
-	def __eq__(self, other: 'Position') -> bool:
+	def __eq__(self, other) -> bool:
 		return self.x == other.x and self.y == other.y
 
 
