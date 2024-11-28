@@ -20,7 +20,7 @@ class Invoker:
 					self.handle_execute_exception(e)
 					break
 			else:
-				raise Exception(f'Command "{command}" does not exist.')
+				print(f'/!\\ Command "{command_bracket}" ignored: command does not exist.')
 
 	def handle_execute_exception(self, exception: Exception):
 		raise exception

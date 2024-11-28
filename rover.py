@@ -65,15 +65,23 @@ class Rover(Object):
             self.position.y = 0
 
     def backward(self):
+        new_position: Position = self.position.copy()
+
         match (self.direction):
             case Direction.NORTH:
-                self.position.x += -1
+                new_position.y += -1
             case Direction.WEST:
-                self.position.y += 1
+                new_position.x += 1
             case Direction.SOUTH:
-                self.position.x += 1
+                new_position.y += 1
             case Direction.EAST:
-                self.position.y += -1
+                new_position.x += -1
+
+        if self.planet.get_obstacle_at(new_position) is None:
+            self.position = new_position.copy()
+            self.wrap()
+        else:
+            raise ObstacleEncounterException(f"/!\\ Can't move to {new_position} because there is already an object here.")
 
     def __str__(self) -> str:
         return f"Rover at {self.position} | looking at {self.direction}"
